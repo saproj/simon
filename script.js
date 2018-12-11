@@ -38,7 +38,7 @@ var mouseDisabled;
 
 restart();
 
-function drawAreaByNumber(bright, number)
+function paintArea(bright, number)
 {
 	var colors = [["DarkGreen", "DarkRed", "#C0C000", "DarkBlue"], ["Green", "Red", "#FFFF00", "Blue"]];
 
@@ -50,7 +50,7 @@ function drawAreaByNumber(bright, number)
 function show()
 {
 	showingBright = !showingBright;
-	drawAreaByNumber(showingBright, sequence[shownSoFar]);
+	paintArea(showingBright, sequence[shownSoFar]);
 	if (!showingBright)
 		shownSoFar++;
 
@@ -66,10 +66,10 @@ function nextRound()
 	canvas.width  = window.innerWidth;
 	canvas.height = window.innerHeight;
 	canvasRect = canvas.getBoundingClientRect();
-	drawAreaByNumber(false, 0);
-	drawAreaByNumber(false, 1);
-	drawAreaByNumber(false, 2);
-	drawAreaByNumber(false, 3);
+	paintArea(false, 0);
+	paintArea(false, 1);
+	paintArea(false, 2);
+	paintArea(false, 3);
 
 	nextToClick = 0;
 	showingBright = false;
@@ -114,7 +114,7 @@ function onClick(event)
 
 	if (sequence[nextToClick] == number) {
 		mouseDisabled = true;
-		drawAreaByNumber(true, number);
+		paintArea(true, number);
 		setTimeout(toNext, 250);
 	} else {
 		context.clearRect(0, 0, canvasRect.width, canvasRect.height);
@@ -125,7 +125,7 @@ function onClick(event)
 
 function toNext()
 {
-	drawAreaByNumber(false, sequence[nextToClick]);
+	paintArea(false, sequence[nextToClick]);
 	nextToClick++;
 	if (nextToClick == sequence.length) {
 		showText(nextToClick);
